@@ -1,0 +1,102 @@
+<?php /* @var $this Controller */ ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="language" content="en" />
+
+	<?php
+	Yii::app()->bootstrap->register();
+
+	?>
+
+	<!-- blueprint CSS framework -->
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print" />
+	<!--[if lt IE 8]>
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />
+	<![endif]-->
+
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
+
+	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+</head>
+
+<body>
+
+<div class="container" id="page">
+
+	<div id="header">
+		<div id="logo"><?php echo 'xxxxxxxx'; ?></div>
+	</div><!-- header -->
+
+	<div id="mainmenu">
+
+		<?php
+		$this->widget('bootstrap.widgets.TbNavbar',array(
+			'brand'=>Yii::app()->name,
+			//'type' => 'inverse',
+			'items'=>array(
+				array(
+					'class'=>'bootstrap.widgets.TbMenu',
+					'items'=>array(
+						array('label'=>'Group', 'url'=>array('/groups/index')),
+						array('label'=>'Object', 'url'=>array('/objects/index')),
+						array('label'=>'Alarm', 'url'=>array('/alarmStat/index')),
+						array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+						array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+
+					),
+				),
+				
+				array(
+					'class'=>'bootstrap.widgets.TbMenu',
+					'htmlOptions'=>array('class'=>'pull-right'),
+					'items'=>array
+					(
+						array(
+						'label'=>"Help",
+						'url'=>array('/site/help')
+						),
+
+						array(
+						'label' => 'QA Family', 
+						'url'=>'#',
+						'items'=>array(
+							array('label'=>'Tools', 'url'=>'http://10.0.0.202:9396/tools/'),
+							'---',
+							array('label'=>'Logout', 'url'=>'#')
+							
+							)
+					
+					)
+						
+					),
+				),
+
+		)));
+		?>
+	</div><!-- mainmenu -->
+
+
+
+	<?php if(isset($this->breadcrumbs)):?>
+		<?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
+			'links'=>$this->breadcrumbs,
+		)); ?><!-- breadcrumbs -->
+	<?php endif?>
+
+	<?php echo $content; ?>
+
+	<div class="clear"></div>
+
+	<div id="footer">
+		Copyright &copy; <?php echo date('Y'); ?> by Domob.<br/>
+		All Rights Reserved.<br/>
+	</div><!-- footer -->
+
+</div><!-- page -->
+
+</body>
+</html>
